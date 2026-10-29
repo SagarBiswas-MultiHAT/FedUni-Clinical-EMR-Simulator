@@ -1,385 +1,237 @@
-# EMR Simulator - Electronic Medical Records System
+# Clinical EMR Simulator
 
-<div align="right">
+<div align="center">
 
-[![.NET Version](https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
-&nbsp;
-[![Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture-00599C?style=for-the-badge&logo=diagramsdotnet&logoColor=white)](#)
-&nbsp;
+![EMR Simulator Banner](EMRSimulationWebApp/EMRSimulationWebApp/wwwroot/images/background.png)
+
+### Hospital-Grade Electronic Medical Records Training Platform for Clinical and Nursing Education
+
+[![.NET 8.0](https://img.shields.io/badge/.NET-8.0%20LTS-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
+[![Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture-00599C?style=for-the-badge&logo=diagramsdotnet&logoColor=white)](#system-architecture)
 [![Database](https://img.shields.io/badge/Database-MS%20SQL%20Server-CC292B?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)](https://www.microsoft.com/sql-server)
-&nbsp;
-[![License](https://img.shields.io/badge/License-MIT-green.style=for-the-badge?style=for-the-badge)](#)
-&nbsp;
-[![Institution](https://img.shields.io/badge/Institution-Federation%20University-002B49?style=for-the-badge)](https://www.federation.edu.au)
-&nbsp;
-[![Clinical Modules](https://img.shields.io/badge/Clinical%20Modules-14%20Active-008080?style=for-the-badge)](#)
+[![Clinical Modules](https://img.shields.io/badge/Clinical%20Modules-14%20Integrated-008080?style=for-the-badge)](#clinical-modules-overview)
+[![License](https://img.shields.io/badge/License-Non--Commercial%20Evaluation-blue?style=for-the-badge)](LICENSE.md)
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge)](#quick-start-guide)
+[![Security Policy](https://img.shields.io/badge/Security-Enforced-red?style=for-the-badge)](SECURITY.md)
+
+[Explore Modules](#clinical-modules-overview) • [System Architecture](#system-architecture) • [Quick Start](#quick-start-guide) • [Security & IP](#intellectual-property-and-anti-theft-notice) • [Contributing](CONTRIBUTING.md)
 
 </div>
 
+---
 
-## What is This Project?
+## Overview
 
-This is an **Electronic Medical Records (EMR) Simulator** - a training application that simulates a real hospital/lab management system. It allows students and supervisors to practice managing patient records, medications, lab work, and assessments in a safe, controlled environment.
+The **Clinical EMR Simulator** is an enterprise-grade training web application designed to bridge the gap between academic healthcare education and real-world clinical documentation. Engineered with **ASP.NET Core 8** and **Clean Architecture**, it provides healthcare students, nursing trainees, and university supervisors with a safe, responsive, and realistic environment to practice electronic patient care management without patient risk.
 
-**Think of it like:** A practice simulator for hospital staff, similar to flight simulators for pilots.
-
-## Project Folder Structure
-
-1. **EMRSimulationWebApp** - Contains all the website code and application files
-2. **PublishedWebsite** - Contains files ready for deployment/publishing to a server
-3. **DatabaseSchema.sql** - Instructions for creating the database (tables, data, etc.)
-4. **EmrSimulator_full_After_update_2026-01-13.sql** - Complete database setup with sample data
+Like flight simulators for aviators, this platform prepares future healthcare professionals for bedside documentation standards, early patient deterioration detection, complex fluid balances, and rigorous medication administration workflows.
 
 ---
 
-# QUICK START GUIDE: HOW TO RUN THE EMR SIMULATOR
+## Key Features
 
-This guide is designed for everyone, whether you're technical or not. Follow these steps in order.
-
-## Prerequisites (What You Need to Install First)
-
-Before you can run the application, you need two main tools:
-
-### 1. SQL Server Express (The Database)
-
-**What is it?** A database is like a filing cabinet that stores all the patient records, user accounts, and other information.
-
-- **Download:** [SQL Server Express 2022](https://www.microsoft.com/en-us/sql-server/sql-server-editions-express)
-- **How to install:**
-  1. Run the downloaded installer
-  2. Choose **"Basic"** installation (it's the easiest)
-  3. Accept all default settings and click through to finish
-  4. You'll be prompted to restart - do that
-  5. **After installation:** Also install **SQL Server Management Studio (SSMS)** - it's the tool to manage your database
-     - Search for "SQL Server Management Studio" in Windows
-     - Download and install it
-
-### 2. .NET SDK (The Framework)
-
-**What is it?** This is the software framework needed to run the application code.
-
-- **Download:** [.NET 6.0 SDK or higher](https://dotnet.microsoft.com/download)
-- **How to install:**
-  1. Run the installer
-  2. Click through the installation wizard with default settings
-  3. When complete, restart your computer
-  4. **Verify installation:** Open Command Prompt/PowerShell and type:
-     ```
-     dotnet --version
-     ```
-     You should see a version number (like 6.0 or higher)
+- **Multi-Role Clinical Access**: Distinct environments for Student Clinicians and Clinical Supervisors.
+- **14 Integrated Clinical Documentation Modules**: Modeled after accredited hospital charting standards.
+- **Real-Time Clinical Alert Scoring**: Automated early warning scoring (ADDS, Braden Scale, Glasgow Coma Scale, FRAT).
+- **Single Page Architecture (SPA-Like UX)**: High-performance dynamic interface powered by asynchronous AJAX routing and Bootstrap 5.
+- **Audited Administration Workflows**: Dual-signature verification, role-stamped progress notes, and medication co-signing.
+- **Automated Data Lifecycle Management**: Supervisor tools for instant scenario resets and student simulation cleanup.
 
 ---
 
-## Step-by-Step Setup Instructions
+## Clinical Modules Overview
 
-### STEP 1: Create the Database (Do This Once)
-
-A database is where all the information is stored. Follow these sub-steps:
-
-#### Step 1a: Connect to SQL Server
-
-1. Open **SQL Server Management Studio (SSMS)** - search for it in Windows Start menu
-2. A window will appear asking you to connect. Fill in:
-   - **Server name:** `.\SQLEXPRESS` (the dot and backslash mean "this computer")
-   - **Authentication:** Windows Authentication (should already be selected)
-3. Click **Connect**
-4. If a certificate warning appears, click **Yes** or **Trust**
-
-#### Step 1b: Create an Empty Database
-
-1. In SSMS, on the left side, right-click on **"Databases"** folder
-2. Select **"New Database..."**
-3. Name it: `EmrSimulator` (exactly as shown - capitals matter)
-4. Click **OK**
-5. You should now see "EmrSimulator" in your Databases list
-
-#### Step 1c: Load Sample Data
-
-1. In SSMS, click **File** → **Open** → **File**
-2. Navigate to your project folder: `C:\GitHub\FedUni-Clinical-EMR-Simulator\`
-3. Open the file: **`EmrSimulator_full_After_update_2026-01-13.sql`**
-   - This file contains all the tables, patient records, and user accounts
-4. You'll see SQL code in the editor window
-5. Click the **Execute** button (green play button) or press **Ctrl+E**
-6. Wait for it to complete (this might take a minute)
-7. You should see messages saying "Commands completed successfully"
-
-**What just happened?** You've loaded:
-
-- All database tables (containers for data)
-- Sample patient records (for practice)
-- User accounts (student and supervisor logins)
-- All the application logic
+| Module | Purpose | Key Clinical Capabilities |
+| :--- | :--- | :--- |
+| **ADDS Chart** | Adult Deterioration Detection System | Multi-vital entry (RR, HR, BP, SpO2, Temp, Consciousness), color-coded threshold scoring, alert triggers. |
+| **Neurological Chart** | Glasgow Coma Scale (GCS) Assessment | Eye, verbal, and motor scoring, pupil size and reaction tests, bilateral limb response tracking. |
+| **Braden Scale** | Pressure Injury Risk Management | Sensory, moisture, activity, mobility, nutrition, and friction scoring with automated risk categorization. |
+| **Fall Risk Assessment (FRAT)** | Patient Fall Prevention | Multi-factor risk scoring, automated overrides for sedation and acute mobility changes, targeted clinical interventions. |
+| **Medication Regular Chart** | Scheduled Drug Administration | Prescription scheduling, dosage checks, multi-shift administration logs, co-signing validation. |
+| **Medication PRN Chart** | As-Needed Medication Tracking | Real-time interval checks, indication verification, post-administration outcome reviews. |
+| **Medication Master List** | Formulary Management | Supervisor catalog control, active drug lists, and lab-specific formulary isolation. |
+| **IV Fluid Chart & Orders** | Intravenous Fluid Therapy | Physician fluid order tracking, rate calculations, bag change verifications, student administration records. |
+| **Fluid Balance Chart** | 24-Hour Input / Output Management | Detailed intake (IV, oral, enteral) versus output (urine, vomitus, drainage, gastric) with automated balance calculation. |
+| **Food Intake Monitoring** | Nutritional Care Tracking | Seven-period meal monitoring, portion estimation, special diet flags, and feeding assistance notes. |
+| **Progress Notes** | Multidisciplinary Clinical Notes | Chronological notes auto-stamped with author role (Student vs Supervisor) and shift context. |
+| **RISKMAN Reporting** | Clinical Incident & Hazard Analysis | 50-field comprehensive clinical incident reporting with dedicated high-fidelity print stylesheets. |
+| **Victorian Maternity Record** | Specialized Obstetric Tracking | Clinical assessment documentation modeled after regional healthcare maternity templates. |
+| **Supervisor Command Center** | Simulation Control | Bulk lab resets, single-patient wipes, scenario initialization, and cohort progress oversight. |
 
 ---
 
-### STEP 2: Download Project Files
+## System Architecture
 
-1. Open **File Explorer** (Windows key + E)
-2. Navigate to: `C:\GitHub\FedUni-Clinical-EMR-Simulator\EMRSimulationWebApp\`
-3. You should see a folder called `EMRSimulationWebApp`
-4. Remember this location - you'll need it in the next step
+The solution adheres strictly to **Clean Architecture** and Domain-Driven principles, enforcing decoupling between domain logic, data persistence, and UI presentation.
+
+```mermaid
+graph TD
+    subgraph UI ["Presentation Layer (EMRSimulationWebApp)"]
+        A[ASP.NET Core 8 MVC Controllers]
+        B[Razor Views & Dynamic Partial Renderers]
+        C[Client Scripts / jQuery AJAX Engine]
+    end
+
+    subgraph App ["Application Layer (EMRSimulation.Application)"]
+        D[Clinical Workflow Services]
+        E[Role & Session Evaluators]
+        F[Repository Interfaces & Contracts]
+    end
+
+    subgraph Dom ["Domain Layer (EMRSimulation.Domain)"]
+        G[Clinical DTOs & View Models]
+        H[Domain Rules & Clinical Scores]
+    end
+
+    subgraph Infra ["Infrastructure Layer (EMRSimulation.Infrastructure)"]
+        I[SQL Server Repositories]
+        J[Stored Procedure Query Engine]
+        K[Data Protection & Cookie Auth Config]
+    end
+
+    UI --> App
+    App --> Dom
+    Infra --> App
+    Infra --> Dom
+```
+
+### Layer Breakdown
+
+1. **EMRSimulation.Domain**: Plain C# domain models, clinical DTOs (Data Transfer Objects), and calculation models. Zero external dependencies.
+2. **EMRSimulation.Application**: Service contracts (`IPatientService`, `ILabService`, `ILoginService`), business validation, and authorization orchestration.
+3. **EMRSimulation.Infrastructure**: Concrete implementations of data access utilizing Microsoft SQL Server, high-performance stored procedures, and secure database connections.
+4. **EMRSimulationWebApp**: Modern ASP.NET Core 8 presentation layer with responsive Bootstrap 5 styling, partial view caching, and dynamic AJAX routing.
 
 ---
 
-### STEP 3: Run the Application
+## Role-Based Clinical Workflow
 
-Now you're ready to start the application. Follow these steps:
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Student as Student Trainee
+    actor App as EMR Application
+    actor DB as SQL Server Engine
+    actor Supervisor as Clinical Supervisor
 
-1. Open **Command Prompt** or **PowerShell**
-   - Right-click on your desktop or in a folder
-   - Select "Open Windows Terminal here" or "Open PowerShell here"
-   - Or search for "PowerShell" in Windows Start menu
+    Student->>App: Login with Assigned Lab Station
+    App->>DB: Validate Lab Credentials & Load Active Cohort
+    DB-->>App: Patient List & Historical Clinical Charts
+    App-->>Student: Display Dynamic Clinical Workspace
 
-2. Navigate to the correct project folder (note the nested structure):
+    Student->>App: Document Vitals (ADDS / GCS / Fluid Balance)
+    App->>App: Calculate Severity Scores & Trigger Alerts
+    App->>DB: Persist Clinical Transaction (Audit-Stamped)
+    
+    Supervisor->>App: Access Supervisor Dashboard
+    App->>DB: Query Cohort Documentation Progress
+    DB-->>Supervisor: Aggregate Student Records
+    Supervisor->>App: Review Notes & Reset Scenario for Next Session
+    App->>DB: Execute Scoped Data Cleanup Routine
+```
 
-   ```powershell
-   cd "FedUni-Clinical-EMR-Simulator\EMRSimulationWebApp\EMRSimulationWebApp"
+---
+
+## Quick Start Guide
+
+### Prerequisites
+
+Ensure you have the following components installed:
+- **[.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)** or newer
+- **[Microsoft SQL Server Express](https://www.microsoft.com/sql-server/sql-server-downloads)** (2019 or 2022 recommended)
+- **[SQL Server Management Studio (SSMS)](https://learn.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)** or Azure Data Studio
+
+---
+
+### Step 1: Database Initialization
+
+1. Launch **SQL Server Management Studio (SSMS)** and connect to your local SQL Server instance (typically `.\SQLEXPRESS` or `localhost`).
+2. Create an empty database named:
+   ```sql
+   CREATE DATABASE EmrSimulator;
    ```
+3. Open and execute the baseline setup script `EmrSimulator_full_After_update_2026-01-13.sql` in SSMS against the `EmrSimulator` database.
+4. Verify that tables, stored procedures, and sample educational records have completed execution successfully.
 
-3. Start the application:
+---
 
+### Step 2: Configuration
+
+Review the connection configuration in `EMRSimulationWebApp/EMRSimulationWebApp/appsettings.Development.json`:
+
+```json
+{
+  "ConnectionStrings": {
+    "EmrSimulationConnection": "Server=.\\SQLEXPRESS;Database=EmrSimulator;Integrated Security=true;Encrypt=false;TrustServerCertificate=true;Connection Timeout=30;"
+  }
+}
+```
+
+> **Security Note:** In staging and production environments, connection strings should always be supplied via environment variables (`ConnectionStrings__EmrSimulationConnection`) or Azure Key Vault rather than committed appsettings.
+
+---
+
+### Step 3: Build and Run
+
+1. Open PowerShell or your terminal in the root repository folder.
+2. Build the complete solution:
    ```powershell
+   dotnet build EMRSimulationWebApp/EMRSimulationWebApp/EMRSimulationWebApp.sln
+   ```
+3. Launch the web application:
+   ```powershell
+   cd EMRSimulationWebApp/EMRSimulationWebApp
    dotnet run
    ```
-
-4. **Wait for this message to appear:**
-
-   ```
-   Now listening on: http://localhost:5031
-   Application started. Press Ctrl+C to shut down.
+4. Access the web simulator in your browser at:
+   ```text
+   http://localhost:5031
    ```
 
-5. **Do NOT close this window** - this window keeps the application running
+---
+
+## Default Simulation Accounts
+
+For local demonstration and academic testing, the seed script provisions sandbox accounts:
+
+### Student Lab Stations
+| Lab Location | Username | Purpose |
+| :--- | :--- | :--- |
+| Berwick Campus Lab | `berlab` | Clinical Nursing Practice Station |
+| Mt Helen Campus Lab | `mthlab` | Clinical Simulation Laboratory |
+| Gippsland Campus Lab | `giplab` | Acute Patient Care Ward |
+
+### Supervisor Stations
+| Location | Username | Privileges |
+| :--- | :--- | :--- |
+| Berwick Supervisor | `bersuper` | Scenario control, record audit, student reset |
+| Mt Helen Supervisor | `mthsuper` | Scenario control, record audit, student reset |
+| Gippsland Supervisor | `gipsuper` | Scenario control, record audit, student reset |
+
+> **Notice:** These accounts are intended exclusively for isolated offline educational simulations. Never reuse demo credentials in publicly accessible environments.
 
 ---
 
-### STEP 4: Access the Website
+## Intellectual Property and Anti-Theft Notice
 
-1. Open your web browser (Chrome, Edge, Firefox, etc.)
-2. Go to the address bar and type: `http://localhost:5031`
-3. You should see: **"Welcome to Fed Uni EMR Simulator"** with login options
-4. You're ready to login!
+This software, its domain models, proprietary database schemas, and clinical user interfaces represent proprietary engineering work and academic assets.
 
----
+- **Non-Commercial Educational Evaluation Only**: This project is published under a restrictive Non-Commercial Evaluation License. Unauthorized commercial distribution, re-licensing, white-labeling, or deployment as a paid SaaS platform is strictly prohibited.
+- **Trademark Notice**: Institutional names, university campus references, and health service logos remain the exclusive intellectual property of their respective trademark holders.
+- **Academic Integrity**: Plagiarism or misrepresenting this codebase as original student coursework is a violation of academic integrity policies.
+- **Digital Fingerprinting**: Key UI layouts, stored procedure signatures, and architectural patterns contain embedded provenance identifiers for copyright verification.
 
-## Login Credentials
-
-The application has two types of users: **Students** (who manage patients) and **Supervisors** (who oversee and manage the lab).
-
-### STUDENT / LAB TECHNICIAN Credentials
-
-These are for students practicing to manage patient care:
-
-| Location                | Username   | Password  | Status         |
-| ----------------------- | ---------- | --------- | -------------- |
-| Berwick Lab (Primary)   | **berlab** | **F5jh4** | ✓ Ready to Use |
-| Mt Helen Lab (Primary)  | **mthlab** | **4YwCj** | ✓ Ready to Use |
-| Gippsland Lab (Primary) | **giplab** | **hD6s2** | ✓ Ready to Use |
-| Berwick Lab 1           | berlab1    | h4F5j     | ✓ Ready to Use |
-| Berwick Lab 2           | berlab2    | 5jh4F     | ✓ Ready to Use |
-| Berwick Lab 3           | berlab3    | jh4F5     | ✓ Ready to Use |
-| Mt Helen Lab 1          | mthlab1    | Cj4Yw     | ✓ Ready to Use |
-| Mt Helen Lab 2          | mthlab2    | YwCj4     | ✓ Ready to Use |
-| Mt Helen Lab 3          | mthlab3    | wCj4Y     | ✓ Ready to Use |
-| Gippsland Lab 1         | giplab1    | s2hD6     | ✓ Ready to Use |
-| Gippsland Lab 2         | giplab2    | D6s2h     | ✓ Ready to Use |
-| Gippsland Lab 3         | giplab3    | 6s2hD     | ✓ Ready to Use |
-
-**How to login as a Student:**
-
-1. On the login page, click **"Student Login"**
-2. Enter any username from the table above
-3. Enter the corresponding password
-4. Click **Login**
-5. You'll see a list of patients to manage
-
-### SUPERVISOR Credentials
-
-These are for supervisors/instructors who oversee the system:
-
-| Location               | Username     | Password  |
-| ---------------------- | ------------ | --------- |
-| Berwick (Primary)      | **bersuper** | **Mb39R** |
-| Mt Helen (Primary)     | **mthsuper** | **7zGd3** |
-| Gippsland (Primary)    | **gipsuper** | **Ah48i** |
-| Berwick Supervisor 1   | bersuper1    | 9RMb3     |
-| Berwick Supervisor 2   | bersuper2    | b39RM     |
-| Berwick Supervisor 3   | bersuper3    | 39RMb     |
-| Mt Helen Supervisor 1  | mthsuper1    | d37zG     |
-| Mt Helen Supervisor 2  | mthsuper2    | zGd37     |
-| Mt Helen Supervisor 3  | mthsuper3    | Gd37z     |
-| Gippsland Supervisor 1 | gipsuper1    | 8iAh4     |
-| Gippsland Supervisor 2 | gipsuper2    | h48iA     |
-| Gippsland Supervisor 3 | gipsuper3    | 48iAh     |
-
-**How to login as a Supervisor:**
-
-1. On the login page, click **"Supervisor Login"**
-2. Enter any username from the table above
-3. Enter the corresponding password
-4. Click **Login**
-5. You'll see supervisor dashboard and analytics
+For complete terms, review the [LICENSE.md](LICENSE.md) file.
 
 ---
 
-## Configuration
+## Security and Vulnerability Disclosure
 
-The application uses **SQL Server Express** as the database and is configured to connect automatically. The connection is set up in the file: `appsettings.Development.json` in the EMRSimulationWebApp folder.
-
-**For non-technical users:** You don't need to change anything here - it's already configured correctly!
-
-**For technical users:** The connection string uses Windows Authentication to `.\SQLEXPRESS` with the `EmrSimulator` database.
+We take healthcare simulation software security seriously. If you discover a potential vulnerability, please review our [Security Policy](SECURITY.md) and report it responsibly rather than posting publicly.
 
 ---
 
-## How to Create New User Accounts
+## Author & Acknowledgements
 
-If you need to add more student or supervisor accounts, you can do this directly in the database:
-
-### Adding a New Student/Lab Account
-
-1. Open **SQL Server Management Studio (SSMS)**
-2. Connect to your database
-3. Click **File** → **New** → **Query with Current Connection**
-4. Copy and paste this code:
-   ```sql
-   INSERT INTO [dbo].[Lab] ([LabName], [LabLogin], [LabPassword], [Active])
-   VALUES ('My New Lab', 'mylab', 'password123', 1)
-   ```
-5. Change:
-   - `'My New Lab'` - to your lab name
-   - `'mylab'` - to your login username
-   - `'password123'` - to your password
-6. Click **Execute** (green play button)
-7. The new account is ready to use immediately
-
-### Adding a New Supervisor Account
-
-1. Follow steps 1-3 above
-2. Copy and paste this code:
-   ```sql
-   INSERT INTO [dbo].[Supervisor] ([UserName], [UserLogin], [UserPassword], [LabId])
-   VALUES ('Dr. Smith', 'dsmith', 'password123', 1)
-   ```
-3. Change:
-   - `'Dr. Smith'` - to the supervisor's name
-   - `'dsmith'` - to the login username
-   - `'password123'` - to the password
-   - `1` - to the Lab ID (1=Berwick, 2=Mt Helen, 3=Gippsland, etc.)
-4. Click **Execute**
-5. The new supervisor account is ready to use
-
----
-
-## Troubleshooting Guide
-
-### Problem: "Cannot connect to database" or "Login failed"
-
-**Solution:**
-
-1. Make sure SQL Server is running
-2. In Windows, search for **"SQL Server Configuration Manager"**
-3. Look for **"SQL Server (SQLEXPRESS)"** and make sure it shows green circle (Running)
-4. If it's not running, right-click it and select **"Start"**
-
-### Problem: "The application won't start" or shows errors
-
-**Solution:**
-
-1. Make sure you're in the correct folder: `C:\GitHub\FedUni-Clinical-EMR-Simulator\EMRSimulationWebApp\EMRSimulationWebApp`
-2. Try these commands in order:
-   ```powershell
-   dotnet clean
-   dotnet build
-   dotnet run
-   ```
-3. If it still doesn't work, close the terminal window completely and start fresh
-
-### Problem: "Port 5031 is already in use"
-
-**Solution:**
-
-1. The application is already running on your computer
-2. Either use it in another browser window
-3. Or, find the PowerShell window running it and close it (Ctrl+C)
-4. Then start it again with `dotnet run`
-
-### Problem: "Page shows 'Error occurred' when trying to login"
-
-**Solution:**
-
-1. Make sure you typed the username and password correctly (they're case-sensitive)
-2. Make sure you're using the correct login type (Student vs Supervisor)
-3. Check the credentials table above to verify the username and password
-
-### Problem: "I can't see any patients after logging in"
-
-**Solution:**
-
-1. This might be normal - different labs might have different patient records
-2. Try logging in with **"berlab"** / **"F5jh4"** - this lab definitely has sample patients
-3. If still no patients appear, contact your instructor
-
----
-
-## What Can You Do in This Application?
-
-Once you log in, you can:
-
-### As a Student:
-
-- View a list of patients assigned to your lab
-- Access and update patient records
-- Track patient vitals and assessments
-- Manage medications and IV fluids
-- Record progress notes
-- View risk assessments (falls, pressure ulcers, etc.)
-- Practice proper EMR documentation
-
-### As a Supervisor:
-
-- View all patient data across your lab
-- Monitor student activities
-- Generate reports and analytics
-- Manage user accounts
-- Oversee student performance
-
----
-
-## Technical Details (For Developers)
-
-**Technology Stack:**
-
-- **Frontend:** HTML, CSS, JavaScript, Bootstrap
-- **Backend:** ASP.NET Core (C#)
-- **Database:** SQL Server Express
-- **Architecture:** Multi-layered (Application, Domain, Infrastructure, Web layers)
-
-**Port:** http://localhost:5031 (HTTP)
-
-**Database Tables Include:**
-
-- Patient, Supervisor, Lab information
-- Medical assessments (Braden, Fall Risk)
-- Medication charts and administration logs
-- IV fluid administration
-- Progress notes
-- Fluid balance records
-
----
-
-## Support and Contact
-
-If you encounter issues or need help:
-
-1. Check the **Troubleshooting Guide** section above
-2. Review the credentials to ensure they're correct
-3. Contact your instructor or IT support
-
----
-
-**Version:** 0.0.0  
-**Last Updated:** January 2026  
-**Institution:** Federation University
+- **Lead Engineer & Architect**: Sagar Biswas
+- **Institutional Context**: Developed in collaboration with academic health simulation programs at Federation University Australia.

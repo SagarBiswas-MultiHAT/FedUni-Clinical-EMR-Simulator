@@ -13,6 +13,7 @@
 [![License](https://img.shields.io/badge/License-Non--Commercial%20Evaluation-blue?style=for-the-badge)](LICENSE.md)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge)](#quick-start-guide)
 [![Security Policy](https://img.shields.io/badge/Security-Enforced-red?style=for-the-badge)](SECURITY.md)
+[![Sponsor SagarBiswas-MultiHAT on Polar.sh](https://img.shields.io/badge/Sponsor-Polar.sh-0062FF?style=for-the-badge&logo=githubsponsors&logoColor=white)](https://buy.polar.sh/polar_cl_I7DT5UQNUs1Qjb4VrFYOiRA2nkb3RVVUJCnjr3o5SGK)
 
 [Explore Modules](#clinical-modules-overview) • [System Architecture](#system-architecture) • [Quick Start](#quick-start-guide) • [Security & IP](#intellectual-property-and-anti-theft-notice) • [Contributing](CONTRIBUTING.md)
 
@@ -228,6 +229,16 @@ For complete terms, review the [LICENSE.md](LICENSE.md) file.
 ## Security and Vulnerability Disclosure
 
 We take healthcare simulation software security seriously. If you discover a potential vulnerability, please review our [Security Policy](SECURITY.md) and report it responsibly rather than posting publicly.
+
+---
+
+## Support MultiHAT Open-Source
+
+If you find this project useful in your workflow, development, or security research, consider supporting **SagarBiswas-MultiHAT** in its ongoing maintenance and future updates (supports both One-Time and Monthly backing):
+
+[![Support on Polar.sh](https://img.shields.io/badge/Support%20on-Polar.sh-0062FF?style=for-the-badge&logo=githubsponsors&logoColor=white)](https://buy.polar.sh/polar_cl_I7DT5UQNUs1Qjb4VrFYOiRA2nkb3RVVUJCnjr3o5SGK)
+[![Portfolio](https://img.shields.io/badge/Portfolio-sagarbiswas.multihat.dev-2563EB?style=for-the-badge&logo=todoist&logoColor=white)](https://sagarbiswas.multihat.dev/)
+[![Agency](https://img.shields.io/badge/Agency-multihat.dev-111827?style=for-the-badge&logo=vercel&logoColor=white)](https://multihat.dev)
 
 ---
 
